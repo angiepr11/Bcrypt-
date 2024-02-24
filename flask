@@ -1,0 +1,15 @@
+from flask import Flask
+from flask_bcrypt import Bcrypt
+
+app = Flask(__name__)
+bcrypt = Bcrypt(app)
+
+password = 'securepassword'
+
+# Hash a password
+hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+print("Hashed Password:", hashed_password)
+
+# Check a password
+check_result = bcrypt.check_password_hash(hashed_password, 'wrongpassword')
+print("Password Check Result:", check_result)
